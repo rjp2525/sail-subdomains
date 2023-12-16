@@ -1,0 +1,17 @@
+# Copy nginx configuration
+COPY nginx.conf /etc/nginx/
+
+# Laravel scheduler cron job
+RUN echo "* * * * * sail /usr/local/bin/php /var/www/html/artisan schedule:run >> /dev/null 2>&1"  >> /etc/cron.d/laravel-scheduler
+RUN chmod 0644 /etc/cron.d/laravel-scheduler
+
+# Disables php-fpm and nginx from being spawned on systemd process
+RUN systemctl disable php{RUNTIME_VERSION}-fpm
+RUN systemctl disable nginx
+
+# Create log folders
+RUN touch /var/log/php{RUNTIME_VERSION}-fpm.log \
+    && chown sail:sail /var/log/php{RUNTIME_VERSION}-fpm.log \
+    && chmod 755 /var/log/php{RUNTIME_VERSION}-fpm.log \
+    && mkdir -p /var/log/php-fpm \
+    && mkdir -p /var/log/nginx

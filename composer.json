@@ -1,0 +1,47 @@
+{
+    "name": "reno/sail-subdomains",
+    "description": "Modifies your Laravel Sail configuration to allow subdomains locally with nginx/php-fpm",
+    "keywords": [
+        "laravel",
+        "docker",
+        "sail"
+    ],
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/rjp2525/sail-subdomains/issues",
+        "source": "https://github.com/rjp2525/sail-subdomains"
+    },
+    "authors": [
+        {
+            "name": "Reno Philibert",
+            "email": "hello@reno.sh"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "illuminate/console": "^9.0|^10.0|^11.0",
+        "illuminate/contracts": "^9.0|^10.0|^11.0",
+        "illuminate/support": "^9.0|^10.0|^11.0",
+        "symfony/yaml": "^6.0|^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Reno\\SailSubdomains\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.x-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Reno\\SailSubdomains\\SailSubdomainServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
